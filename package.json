@@ -4,8 +4,8 @@
   "description": "Express static server library for AngularJS SPA clients",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js" 
-  }, 
+    "start": "node index.js"
+  },
   "license": "MIT",
   "engines": {
     "node": "0.12.x"
@@ -17,9 +17,10 @@
     "html5",
     "spa"
   ],
-  "dependencies": { 
-    "express": "^4.13.1", 
-	 "ejs":"2.3.1",
+  "dependencies": {
+    "cors": "^2.8.0",
+    "ejs": "2.3.1",
+    "express": "^4.13.1",
     "serve-static": "^1.10.0"
-  } 
+  }
 }
