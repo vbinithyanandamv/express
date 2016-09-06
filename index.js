@@ -5,6 +5,9 @@ var express = require('express')
 , fs = require('fs')
 , util = require('util');
 
+var cors = require('cors');
+ app.use(cors());
+
 // Creates the website server on the port #
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
