@@ -22,7 +22,7 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/public'));
 app.engine('html', require('ejs').renderFile);
 
-// Helper function to format the strings so that they don't include spaces and are all lowercase 
+// Helper function to format the strings so that they don't include spaces and are all lowercase
 var FormatString = function(string)
 {
   var lowercaseString = string.toLowerCase();
@@ -56,12 +56,7 @@ app.post('/api/echo', function(req, res){
         "response": {
           "outputSpeech": {
             "type": "PlainText",
-            "text": "Welcome to Echo Sample! Please say a command"
-          },
-          "card": {
-            "type": "Simple",
-            "title": "Opened",
-            "content": "You started the Node.js Echo API Sample"
+            "text": "Welcome to Visualbi Alexa APP"
           },
           "reprompt": {
             "outputSpeech": {
@@ -77,20 +72,32 @@ app.post('/api/echo', function(req, res){
     {
       var outputSpeechText = "";
       var cardContent = "";
-      if (jsonData.request.intent.name == "TurnOn")
+      if (jsonData.request.intent.name == "open")
       {
         // The Intent "TurnOn" was successfully called
-        outputSpeechText = "Congrats! You asked to turn on " + jsonData.request.intent.slots.Device.value + " but it was not implemented";
-        cardContent = "Successfully called " + jsonData.request.intent.name + ", but it's not implemented!";
+        outputSpeechText = "Welcome Jon,you are looking at the <Sales Dashboard> from August 01, 2016.";
+        cardContent = "Welcome Jon,you are looking at the <Sales Dashboard> from August 01, 2016.";
       }
-      else if (jsonData.request.intent.name == "TurnOff")
+      else if (jsonData.request.intent.name == "ExplainDashboard")
       {
         // The Intent "TurnOff" was successfully called
-        outputSpeechText = "Congrats! You asked to turn off " + jsonData.request.intent.slots.Device.value + " but it was not implemented";
-        cardContent = "Successfully called " + jsonData.request.intent.name + ", but it's not implemented!";
+        outputSpeechText =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
+        cardContent =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
+      }
+      else if (jsonData.request.intent.name == "Whatdowesee")
+      {
+        // The Intent "TurnOff" was successfully called
+        outputSpeechText =  "Product A has the highest Revenue and Product B has the lowest Revenue. Region A has the highest profit and Region B has the lowest Profit.";
+        cardContent =  "Product A has the highest Revenue and Product B has the lowest Revenue. Region A has the highest profit and Region B has the lowest Profit.";
+      }
+      else if (jsonData.request.intent.name == "thankyou")
+      {
+        // The Intent "TurnOff" was successfully called
+        outputSpeechText =  "Thank you for visiting us!! Don't forgot to look onto our VBX extensions";
+        cardContent =  "Thank you for visiting us!! Don't forgot to look onto our VBX extensions";
       }else{
-        outputSpeechText = jsonData.request.intent.name + " not implemented";
-        cardContent = "Successfully called " + jsonData.request.intent.name + ", but it's not implemented!";
+        outputSpeechText = "Sorry! I could not understand you properly! can you try again with proper command";
+        cardContent = "Sorry! I could not understand you properly! can you try again with proper command";
       }
       responseBody = {
           "version": "0.1",
