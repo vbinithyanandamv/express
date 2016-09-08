@@ -4,6 +4,7 @@ var express = require('express')
 , port = process.env.PORT || 3000
 , fs = require('fs')
 , util = require('util');
+var io = require('socket.io')(server);
 
 
 var cors = require('cors');
@@ -77,24 +78,28 @@ app.post('/api/echo', function(req, res){
         // The Intent "TurnOn" was successfully called
         outputSpeechText = "Welcome Jon,you are looking at the <Sales Dashboard> from August 01, 2016.";
         cardContent = "Welcome Jon,you are looking at the <Sales Dashboard> from August 01, 2016.";
+		io.emit('open', outputSpeechText);
       }
       else if (jsonData.request.intent.name == "ExplainDashboard")
       {
         // The Intent "TurnOff" was successfully called
         outputSpeechText =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
         cardContent =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
+		io.emit('ExplainDashboard', outputSpeechText);
       }
       else if (jsonData.request.intent.name == "Whatdowesee")
       {
         // The Intent "TurnOff" was successfully called
         outputSpeechText =  "Product A has the highest Revenue and Product B has the lowest Revenue. Region A has the highest profit and Region B has the lowest Profit.";
         cardContent =  "Product A has the highest Revenue and Product B has the lowest Revenue. Region A has the highest profit and Region B has the lowest Profit.";
+		io.emit('Whatdowesee', outputSpeechText);
       }
       else if (jsonData.request.intent.name == "thankyou")
       {
         // The Intent "TurnOff" was successfully called
         outputSpeechText =  "Thank you for visiting us!! Don't forgot to look onto our VBX extensions";
         cardContent =  "Thank you for visiting us!! Don't forgot to look onto our VBX extensions";
+		io.emit('thankyou', outputSpeechText);
       }else{
         outputSpeechText = "Sorry! I could not understand you properly! can you try again with proper command";
         cardContent = "Sorry! I could not understand you properly! can you try again with proper command";
