@@ -10,7 +10,7 @@ app.use(cors());
 
 //DYNAMIC VARIABLES FROM THE DASHBOARD
 var stopRequest=false;
-var dashboardname={username:"jon",name:"Sales Dashboard",lastime:"August 01, 2016"};
+var dashboardname={username:"jon",name:"Sales Dashboard",lasttime:"August 01, 2016"};
 
 // Creates the website server on the port #
 server.listen(port, function () {
@@ -83,25 +83,25 @@ app.post('/api/echo', function(req, res){
 		     io.emit('open', outputSpeechText);
       }
       else if(jsonData.request.intent.name == "Filter"){
-        if(jsonData.request.intent.slots.Dimension="country" && jsonData.request.intent.slots.Value=="IND"){
-          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension+" for "+jsonData.request.intent.slots.Value;
-          cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension+" for "+jsonData.request.intent.slots.Value;
-        }else if(jsonData.request.intent.slots.Dimension="product" && jsonData.request.intent.slots.Value=="AUS"){
-          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension+" for "+jsonData.request.intent.slots.Value;
-          cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension+" for "+jsonData.request.intent.slots.Value;
+        if(jsonData.request.intent.slots.Dimension.value="country" && jsonData.request.intent.slots.Value.Value=="IND"){
+          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
+          cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
+        }else if(jsonData.request.intent.slots.Dimension.value="product" && jsonData.request.intent.slots.Value.value=="AUS"){
+          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
+          cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
         }
-        io.emit('filter',jsonData.request.intent.slots.Dimension+':'+jsonData.request.intent.slots.Value);
+        io.emit('filter',jsonData.request.intent.slots.Dimension.value+':'+jsonData.request.intent.slots.Value.value);
       }
       else if(jsonData.request.intent.name == "Measure"){
-          if(jsonData.request.intent.slots.Measurelist=="sales"){
+          if(jsonData.request.intent.slots.Measurelist.value=="sales"){
             outputSpeechText = "Displaying the filtered result of Sales";
             cardContent = "Displaying the filtered result of Sales";
           }
-          else if(jsonData.request.intent.slots.Measurelist=="revenue"){
+          else if(jsonData.request.intent.slots.Measurelist.value=="revenue"){
             outputSpeechText = "Displaying the filtered result of Revenue";
             cardContent = "Displaying the filtered result of Revenue";
           }
-          io.emit('measure',jsonData.request.intent.slots.Measurelist);
+          io.emit('measure',jsonData.request.intent.slots.Measurelist.value);
       }
       else if (jsonData.request.intent.name == "ExplainDashboard")
       {
