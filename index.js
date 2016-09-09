@@ -101,7 +101,7 @@ app.post('/api/echo', function(req, res){
           outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
           cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
         }
-        io.emit('filter',jsonData.request.intent.slots.Dimension+':'+jsonData.request.intent.slots.Value.value);
+        io.emit('filter',jsonData.request.intent.slots.Dimension);
       }
       else if(jsonData.request.intent.name == "Measure"){
           if(jsonData.request.intent.slots.Measurelist.value=="sales"){
