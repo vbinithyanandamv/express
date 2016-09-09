@@ -94,14 +94,14 @@ app.post('/api/echo', function(req, res){
 		     io.emit('open', outputSpeechText);
       }
       else if(jsonData.request.intent.name == "Filter"){
-        if(jsonData.request.intent.slots.Dimension.value="country" && jsonData.request.intent.slots.Value.value=="IND"){
-          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
-          cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
-        }else if(jsonData.request.intent.slots.Dimension.value="product" && jsonData.request.intent.slots.Value.value=="AUS"){
-          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
-          cardContent = "Displaying the"+jsonData.request.intent.slots.Dimension.value+" for "+jsonData.request.intent.slots.Value.value;
+        if(jsonData.request.intent.slots.Dim.value="country" && jsonData.request.intent.slots.Value.value=="IND"){
+          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
+          cardContent = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
+        }else if(jsonData.request.intent.slots.Dim.value="product" && jsonData.request.intent.slots.Value.value=="AUS"){
+          outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
+          cardContent = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
         }
-        io.emit('filter',jsonData.request.intent.slots.Dimension);
+        io.emit('filter',jsonData.request.intent.slots.Dim);
       }
       else if(jsonData.request.intent.name == "Measure"){
           if(jsonData.request.intent.slots.Measurelist.value=="sales"){
