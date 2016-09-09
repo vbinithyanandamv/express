@@ -93,6 +93,7 @@ app.post('/api/echo', function(req, res){
         cardContent = "Welcome "+dashboardname.username+",you are looking at the "+dashboardname.name+" from "+dashboardname.lasttime;
 		     io.emit('open', outputSpeechText);
       }
+      //s
       else if(jsonData.request.intent.name == "Filter"){
         if(jsonData.request.intent.slots.Dim.value="country" && jsonData.request.intent.slots.Value.value=="IND"){
           outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
