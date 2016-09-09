@@ -17,6 +17,16 @@ server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
 
+
+io.on('connection', function(socket){
+  socket.on('userdashboardinfo', function(data){
+    var info=data.split(';')
+    dashboardname.username=info[0],
+    dashboardname.name=info[1],
+    dashboardname.lasttime=info[2];
+  });
+});
+
 // configure Express
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
@@ -73,6 +83,7 @@ app.post('/api/echo', function(req, res){
     //intent.slots.Answer
     else if(jsonData.request.type == "IntentRequest")
     {
+
       var outputSpeechText = "";
       var cardContent = "";
       if (jsonData.request.intent.name == "open")
