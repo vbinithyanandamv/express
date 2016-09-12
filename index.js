@@ -115,12 +115,12 @@ app.post('/api/echo', function(req, res){
       }
       else if(jsonData.request.intent.name == "Measure"){
           if(jsonData.request.intent.slots.Measurelist.value=="Number of Records"){
-            outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
-            cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
+            outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
+            cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
           }
           else if(jsonData.request.intent.slots.Measurelist.value=="Fuel Consumption"){
-            outputSpeechText =  "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
-            cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
+            outputSpeechText =  "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
+            cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
           }
       }
       else if (jsonData.request.intent.name == "ExplainDashboard")
