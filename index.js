@@ -104,10 +104,10 @@ app.post('/api/echo', function(req, res){
       }
       //s
       else if(jsonData.request.intent.name == "Filter"){
-        if(jsonData.request.intent.slots.Dim.value=="Country"){
+        if(jsonData.request.intent.slots.Dim.value=="country"){
           outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
           cardContent = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
-        }else if(jsonData.request.intent.slots.Dim.value=="FuelCategory"){
+        }else if(jsonData.request.intent.slots.Dim.value=="fuelcategory"){
           outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
           cardContent = "Displaying the"+jsonData.request.intent.slots.Dim.value+" for "+jsonData.request.intent.slots.Value.value;
         }
