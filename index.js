@@ -114,15 +114,14 @@ app.post('/api/echo', function(req, res){
         io.emit('filter',jsonData.request.intent.slots.Dim.value+':'+jsonData.request.intent.slots.Value.value);
       }
       else if(jsonData.request.intent.name == "Measure"){
-          if(jsonData.request.intent.slots.Measurelist.value=="sales"){
-            outputSpeechText = "Displaying the filtered result of Sales";
-            cardContent = "Displaying the filtered result of Sales";
+          if(jsonData.request.intent.slots.Measurelist.value=="Number of Records"){
+            outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
+            cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
           }
-          else if(jsonData.request.intent.slots.Measurelist.value=="revenue"){
-            outputSpeechText = "Displaying the filtered result of Revenue";
-            cardContent = "Displaying the filtered result of Revenue";
+          else if(jsonData.request.intent.slots.Measurelist.value=="Fuel Consumption"){
+            outputSpeechText =  "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
+            cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"jsonData.request.intent.slots.Timeperiod.value;
           }
-          io.emit('measure',jsonData.request.intent.slots.Measurelist.value);
       }
       else if (jsonData.request.intent.name == "ExplainDashboard")
       {
