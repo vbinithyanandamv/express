@@ -10,8 +10,8 @@ app.use(cors());
 
 //DYNAMIC VARIABLES FROM THE DASHBOARD
 var stopRequest=false;
-var dashboardname={username:"jon",name:"Sales Dashboard",lasttime:"August 01, 2016"};
-
+var dashboardname={username:"jon",name:"Sales Dashboard",lasttime:"August 01, 2016",title1:"Revenue and Profit",title2:"Margin by Region"};
+var maxmininfo={message1:"Product A has the highest Revenue and Product B has the lowest Revenue.",message2:" Region A has the highest profit and Region B has the lowest Profit."}
 // Creates the website server on the port #
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
@@ -19,12 +19,21 @@ server.listen(port, function () {
 
 
 io.on('connection', function(socket){
+  socket.on('maxmininfo', function(data){
+    var info=data.split(';')
+    maxmininfo.message1=info[0];
+    maxmininfo.message2=info[1];
+  });
+
   socket.on('userdashboardinfo', function(data){
     var info=data.split(';')
     dashboardname.username=info[0],
     dashboardname.name=info[1],
     dashboardname.lasttime=info[2];
+    dashboardname.title1=info[3];
+    dashboardname.title2=info[4];
   });
+
 });
 
 // configure Express
@@ -118,29 +127,15 @@ app.post('/api/echo', function(req, res){
       else if (jsonData.request.intent.name == "ExplainDashboard")
       {
         // The Intent "TurnOff" was successfully called
-        outputSpeechText =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
-        cardContent =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
-		    io.emit('ExplainDashboard', outputSpeechText);
-      }
-      else if (jsonData.request.intent.name == "ExplainDashboard")
-      {
-        // The Intent "TurnOff" was successfully called
-        outputSpeechText =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
-        cardContent =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
-		    io.emit('ExplainDashboard', outputSpeechText);
-      }
-      else if (jsonData.request.intent.name == "ExplainDashboard")
-      {
-        // The Intent "TurnOff" was successfully called
-        outputSpeechText =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
-        cardContent =  "This dashboard shows Revenue and Profit by Product and Margin by Region.";
+        outputSpeechText =  "This dashboard shows  "+dashboardname.title1+" and  "+dashboardname.title2;
+        cardContent =  "This dashboard shows  "+dashboardname.title1+" and  "+dashboardname.title2;
 		    io.emit('ExplainDashboard', outputSpeechText);
       }
       else if (jsonData.request.intent.name == "Whatdowesee")
       {
         // The Intent "TurnOff" was successfully called
-        outputSpeechText =  "Product A has the highest Revenue and Product B has the lowest Revenue. Region A has the highest profit and Region B has the lowest Profit.";
-        cardContent =  "Product A has the highest Revenue and Product B has the lowest Revenue. Region A has the highest profit and Region B has the lowest Profit.";
+        outputSpeechText =  maxmininfo.message1+maxmininfo.message2;
+        cardContent =  maxmininfo.message1+maxmininfo.message2;
 		    io.emit('Whatdowesee', outputSpeechText);
       }
       else if (jsonData.request.intent.name == "thankyou")
