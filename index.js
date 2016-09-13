@@ -68,6 +68,7 @@ app.post('/api/echo', function(req, res){
 
     // parsing the requestBody for information
     var jsonData = JSON.parse(requestBody);
+    stopRequest=false;
     if(jsonData.request.type == "LaunchRequest")
     {
       // crafting a response
