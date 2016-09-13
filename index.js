@@ -144,10 +144,13 @@ app.post('/api/echo', function(req, res){
         // The Intent "TurnOff" was successfully called
         outputSpeechText =  "Thank you for visiting us!! Don't forget to look onto our VBX extensions";
         cardContent =  "Thank you for visiting us!! Don't forget to look onto our VBX extensions";
+        io.emit('stop','Stopped');
       }else if (jsonData.request.intent.name="AMAZON.StopIntent") {
         handlestopRequest();
+        io.emit('stop','Stopped');
       } else if(jsonData.request.intent.name="AMAZON.CancelIntent") {
          handlestopRequest();
+         io.emit('stop','Stopped');
       }else{
         outputSpeechText = "Sorry! I could not understand you properly! can you try again with proper command";
         cardContent = "Sorry! I could not understand you properly! can you try again with proper command";
