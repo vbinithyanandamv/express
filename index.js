@@ -114,11 +114,11 @@ app.post('/api/echo', function(req, res){
         io.emit('filter',jsonData.request.intent.slots.Dim.value+':'+jsonData.request.intent.slots.Value.value);
       }
       else if(jsonData.request.intent.name == "Measure"){
-          if(jsonData.request.intent.slots.Measurelist.value=="Number of Records"){
+          if(jsonData.request.intent.slots.Measurelist.value=="numberofrecords"){
             outputSpeechText = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
             cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
           }
-          else if(jsonData.request.intent.slots.Measurelist.value=="Fuel Consumption"){
+          else if(jsonData.request.intent.slots.Measurelist.value=="fuelconsumption"){
             outputSpeechText =  "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
             cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
           }
