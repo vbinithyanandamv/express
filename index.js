@@ -122,6 +122,7 @@ app.post('/api/echo', function(req, res){
             outputSpeechText =  "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
             cardContent = "Displaying the"+jsonData.request.intent.slots.Measurelist.value+" for"+jsonData.request.intent.slots.Timeperiod.value;
           }
+            io.emit('measure',jsonData.request.intent.slots.Measurelist.value+':'+jsonData.request.intent.slots.Timeperiod.value);
       }
       else if (jsonData.request.intent.name == "ExplainDashboard")
       {
